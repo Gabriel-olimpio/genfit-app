@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="box">
+    <h1 class="title has-text-centered">Registrar-se</h1>
+    <form method="POST">
+        <div class="field">
+            <label class="label" for="nome">Nome:</label>
+            <div class="control">
+                <input class="input" type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="email">Email:</label>
+            <div class="control">
+                <input class="input" type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="senha">Senha:</label>
+            <div class="control">
+                <input class="input" type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="papel">Papel:</label>
+            <div class="control">
+                <div class="select">
+                    <select id="papel" name="papel">
+                        <option value="usuario">Usuário</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary is-fullwidth">Registrar</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
