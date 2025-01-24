@@ -54,7 +54,7 @@ class Usuario(UserMixin, db.Model):
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('index.html')
 
 @app.errorhandler(403)
 def forbidden(error):
