@@ -15,7 +15,7 @@
       <ul>
         <li><a href="#features">Funcionalidades</a></li>
         <li><a href="#about">Sobre</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
       </ul>
     </nav>
   </header>
@@ -23,7 +23,7 @@
     <section>
       <h2>Personalize seu treino agora!</h2>
       <p>Insira suas preferências para começar a treinar com o melhor planejamento personalizado.</p>
-      <a href="/register" class="btn">Comece Agora</a>
+      <a href="{{ url_for('register') }}" class="btn">Comece Agora</a>
     </section>
   </main>
   <footer>
