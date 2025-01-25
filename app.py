@@ -1,9 +1,13 @@
 from functools import wraps
-from flask import Flask, render_template, request, flash, redirect, url_for, abort
+from flask import Flask, jsonify, render_template, request, flash, redirect, url_for, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import bcrypt
 from werkzeug.security import generate_password_hash
+
+# URL da API
+OLLAMA_URL = "http://localhost:11434/api/generate"
+
 
 # Config do flask e banco de dados
 app = Flask(__name__)
@@ -23,6 +27,44 @@ login_manager.login_message = 'Você precisa estar logado para acessar esta pág
 @login_manager.user_loader
 def load_user(user_id):
     return Usuario.query.get(int(user_id))
+
+
+@app.route('/generate_plan', methods=['POST'])
+def generate_plan():
+    user_data = request.json
+    
+    objetivo = user_data.get("objetivo")
+    dias = user_data.get("dias")
+    peso = user_data.get("peso")
+    altura = user_data.get("altura")
+    duracao = user_data.get("duracao")
+
+    prompt = f"""
+        Crie um plano de treino para um usuário com as seguintes informações:
+        - Objetivo: {objetivo}
+        - Peso: {peso} kg
+        - Altura: {altura} cm
+        - Quantidade de dias disponíveis por semana: {dias}
+        - Duração média do treino: {duracao} minutos
+        Inclua exercícios com séries, repetições, e tempo de descanso. Liste os treinos dia a dia.
+    """
+
+    try:
+        response = request.post(
+            OLLAMA_URL,
+            json={
+                "model": "llama3.2",  # Especifique o modelo desejado (ex.: 'llama2')
+                "prompt": prompt
+            }
+        )
+        response.raise_for_status()
+        data = response.json()
+        plan = data.get("response", "").strip()
+        return jsonify({"plan": plan})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 
 # Verificação de papel (adm, user)
