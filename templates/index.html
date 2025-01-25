@@ -1,14 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenFit</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenFit</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <p>Bem vindo ao meu app flask!
-        O banco de dados foi configurado!!
-    </p>
+  <header>
+    <div class="brand">
+      <h1>GenFit</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#features">Funcionalidades</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Personalize seu treino agora!</h2>
+      <p>Insira suas preferências para começar a treinar com o melhor planejamento personalizado.</p>
+      <a href="/register" class="btn">Comece Agora</a>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 GenFit. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
