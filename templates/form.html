@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Formulário</title>
 </head>
 <body>
@@ -38,8 +38,7 @@
         <input type="number" id="duracao" name="duracao" min="20" max="120">
         
         <br>
-        
-        <button type="submit">Gerar Plano</button>
+        <a href="{{ url_for('result') }}" class="btn">Gerar Plano</a>
     </form>
 </body>
 </html>
