@@ -135,7 +135,7 @@ def logout():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('user_dashboard.html')
+    return render_template('usuario_dashboard.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
