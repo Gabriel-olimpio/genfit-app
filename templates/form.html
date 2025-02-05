@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GenFit</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS externo -->
+  <!-- <link rel="stylesheet" href="/static/style.css"> Arquivo CSS externo -->
 </head>
 <body class="has-background-image">
 
@@ -13,8 +13,8 @@
   <header class="navbar is-primary">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item has-text-white" href="#">
-          <h1 class="title has-text-white is-size-1 has-text-centered">GenFit</h1>
+        <a class="navbar-item has-text-white" href="{{ url_for('home') }}">
+          <h1 class="title has-text-white has-text-centered">GenFit</h1>
         </a>
       </div>
     </div>
@@ -26,7 +26,7 @@
       <div class="box has-background-white-ter">
         <h1 class="title has-text-centered">GenFit Form</h1>
 
-        <form>
+        <form method="POST">
           <div class="field">
             <label class="label">Objetivo:</label>
             <div class="select is-fullwidth">
@@ -64,7 +64,9 @@
             <input class="input" type="number" name="duracao" min="20" max="120">
           </div>
 
-          <button type="submit" class="button is-primary is-fullwidth">Gerar Plano</button>
+          <a href="{{ url_for('result') }}" class="button is-primary is-fullwidth">
+            Gerar Plano de Treino
+        </a>
         </form>
       </div>
     </div>

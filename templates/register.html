@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS separado -->
+    <!-- <link rel="stylesheet" href="/static/style.css"> Arquivo CSS separado -->
     <title>GenFit Registro</title>
 </head>
 <body>
     <!-- Cabeçalho -->
     <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <strong>GenFit</strong>
-            </a>
+          <a class="navbar-item" href="{{ url_for('home') }}">
+            <h1 class="title has-text-white">GenFit</h1>
+          </a>
         </div>
     </nav>
 
     <div class="container is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
       <div class="box" style="width: 400px;">
+
         <!-- Títulos das Abas -->
         <div class="tabs is-toggle is-fullwidth">
           <ul>
@@ -30,28 +31,28 @@
         <!-- Ícone -->
         <div class="has-text-centered">
           <figure class="image is-128x128" style="margin: auto;">
-           <img src="{{ url_for('static', filename='img/icon2.png') }}" alt="Ícone de Usuário" />
+           <img src="/static/icon2.png" alt="Ícone de Usuário" />
           </figure>
         </div>
 
         <!-- Formulário de Registro -->
-        <form action="dashboard.html" method="POST">
+        <form method="POST">
           <div class="field">
-            <label class="label">Nome Completo</label>
+            <label class="label" for="nome">Nome Completo</label>
             <div class="control">
-              <input class="input" type="text" id="name" name="name" placeholder="Nome Completo" required>
+              <input class="input" type="text" id="nome" name="nome" placeholder="Nome Completo" required>
             </div>
           </div>
           <div class="field">
-            <label class="label">Email</label>
+            <label class="label" for="email">Email</label>
             <div class="control">
               <input class="input" type="email" id="email" name="email" placeholder="Email" required>
             </div>
           </div>
           <div class="field">
-            <label class="label">Senha</label>
+            <label class="label" for="senha">Senha</label>
             <div class="control">
-              <input class="input" type="password" id="password" name="password" placeholder="Senha" required>
+              <input class="input" type="password" id="senha" name="senha" placeholder="Senha" required>
             </div>
           </div>
           <div class="field has-text-centered">
