@@ -1,14 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenFit</title>
-    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenFit</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-    <p>Bem vindo ao meu app flask!
-        O banco de dados foi configurado!!
-    </p>
+
+  <!-- Cabeçalho -->
+  <header class="navbar is-primary">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item has-text-white" href="#">
+          <h1 class="title has-text-white">GenFit</h1>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item has-text-white" href="#features">Funcionalidades</a>
+          <a class="navbar-item has-text-white" href="#about">Sobre</a>
+          <a class="navbar-item has-text-white" href="{{ url_for('login') }}">Login</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Seção Principal -->
+  <section class="section">
+    <div class="container">
+      <div class="columns is-vcentered">
+        <div class="column is-half">
+          <div class="box has-background-dark has-text-white p-6">
+            <h2 class="title is-3 has-text-white">Treinos e Orientações Personalizadas</h2>
+            <p class="is-size-5">Gerar rotinas de exercícios físicos personalizadas, baseadas nas necessidades específicas de cada usuário. A iniciativa visa promover a saúde física e o direcionamento adequado para atividades físicas, combatendo a falta de instrução.</p>
+          </div>
+        </div>
+        <div class="column is-half has-text-centered">
+          <figure class="image">
+            <img src="/static/imagen1.png.jpg" alt="Ilustração de treino personalizado">
+          </figure>
+        </div>
+      </div>
+      <div class="has-text-centered mt-6">
+        <h2 class="title is-2 has-text-primary">Personalize seu treino agora!</h2>
+        <p class="subtitle is-4">Insira suas preferências para começar a treinar com o melhor planejamento personalizado.</p>
+        <a href="{{ url_for('register') }}" class="button is-primary is-medium">Comece Agora</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Rodapé -->
+  <footer class="footer has-background-light">
+    <div class="content has-text-centered">
+      <p>&copy; 2025 GenFit. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
 </body>
 </html>

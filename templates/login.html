@@ -1,26 +1,65 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="/static/style.css"> Arquivo CSS separado -->
+    <title>GenFit Login</title>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{ url_for('home') }}">
+              <h1 class="title has-text-white">GenFit</h1>
+            </a>
+        </div>
+    </nav>
 
-{% block content %}
-<div class="box">
-    <h1 class="title has-text-centered">Login</h1>
-    <form method="POST">
-        <div class="field">
-            <label class="label" for="email">Email:</label>
-            <div class="control">
-                <input class="input" type="email" id="email" name="email" placeholder="Digite seu email" required>
-            </div>
+    <div class="container is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
+      <div class="box" style="width: 400px;">
+        
+        <!-- Títulos das Abas -->
+        <div class="tabs is-toggle is-fullwidth">
+          <ul>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            <li><a href="{{ url_for('register') }}">Registrar</a></li>
+          </ul>
         </div>
-        <div class="field">
-            <label class="label" for="senha">Senha:</label>
-            <div class="control">
-                <input class="input" type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
-            </div>
+
+        <!-- Ícone -->
+        <div class="has-text-centered">
+          <figure class="image is-128x128" style="margin: auto;">
+           <img src="/static/icon2.png" alt="Ícone de Usuário" />
+          </figure>
         </div>
-        <div class="field">
+
+        <!-- Formulário de Login -->
+        <form method="POST" action="{{ url_for('login') }}">
+          <div class="field">
+            <label class="label" for="email">Email</label>
             <div class="control">
-                <button class="button is-primary is-fullwidth">Entrar</button>
+              <input class="input" type="email" id="email" name="email" placeholder="Email" required>
             </div>
+          </div>
+          <div class="field">
+            <label class="label" for="senha">Senha</label>
+            <div class="control">
+              <input class="input" type="password" id="senha" name="senha" placeholder="Senha" required>
+            </div>
+          </div>
+          <div class="field has-text-centered">
+            <button class="button is-primary" type="submit">Entrar</button>
+          </div>
+        </form>
+
+        <!-- Redirecionamento para Registro -->
+        <div class="has-text-centered">
+          <a href="{{ url_for('register') }}">Já tem uma conta? Cadastre-se</a>
         </div>
-    </form>
-</div>
-{% endblock %}
+      </div>
+    </div>
+</body>
+</html>
+

@@ -5,9 +5,6 @@ from flask_login import LoginManager, UserMixin, login_user, logout_user, login_
 import bcrypt
 from werkzeug.security import generate_password_hash
 
-# URL da API
-OLLAMA_URL = "http://localhost:11434/api/generate"
-
 
 # Config do flask e banco de dados
 app = Flask(__name__)
@@ -29,52 +26,18 @@ def load_user(user_id):
     return Usuario.query.get(int(user_id))
 
 
-@app.route('/generate_plan', methods=['POST'])
-def generate_plan():
-    user_data = request.json
-    
-    objetivo = user_data.get("objetivo")
-    dias = user_data.get("dias")
-    peso = user_data.get("peso")
-    altura = user_data.get("altura")
-    duracao = user_data.get("duracao")
-
-    prompt = f"""
-        Crie um plano de treino para um usuário com as seguintes informações:
-        - Objetivo: {objetivo}
-        - Peso: {peso} kg
-        - Altura: {altura} cm
-        - Quantidade de dias disponíveis por semana: {dias}
-        - Duração média do treino: {duracao} minutos
-        Inclua exercícios com séries, repetições, e tempo de descanso. Liste os treinos dia a dia.
-    """
-
-    try:
-        response = request.post(
-            OLLAMA_URL,
-            json={
-                "model": "llama3.2",  # Especifique o modelo desejado (ex.: 'llama2')
-                "prompt": prompt
-            }
-        )
-        response.raise_for_status()
-        data = response.json()
-        plan = data.get("response", "").strip()
-        return jsonify({"plan": plan})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-
+@app.route('/result')
+def result():
+    return render_template('result.html')
 
 # Verificação de papel (adm, user)
-def admin_required(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        if not current_user.is_authenticated or current_user.papel != 'admin':
-            abort(403)
-        return func(*args, **kwargs)
-    return wrapper
+# def admin_required(func):
+#     @wraps(func)
+#     def wrapper(*args, **kwargs):
+#         if not current_user.is_authenticated or current_user.papel != 'admin':
+#             abort(403)
+#         return func(*args, **kwargs)
+#     return wrapper
 
 
 # Classe do Usuario
@@ -83,20 +46,19 @@ class Usuario(UserMixin, db.Model):
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     senha = db.Column(db.String(100), nullable=False)
-    papel = db.Column(db.String(20), nullable=False, default='usuario')
     
-    def set_senha(self, senha):
-        self.senha = bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    # def set_senha(self, senha):
+    #     self.senha = bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    def verificar_senha(self, senha):
-        return bcrypt.checkpw(senha.encode('utf-8'), self.senha.encode('utf-8'))
+    # def verificar_senha(self, senha):
+    #     return bcrypt.checkpw(senha.encode('utf-8'), self.senha.encode('utf-8'))
 
 
 # Rotas da Aplicação Web
 
 @app.route('/')
 def home():
-    return render_template('base.html')
+    return render_template('index.html')
 
 @app.errorhandler(403)
 def forbidden(error):
@@ -104,7 +66,7 @@ def forbidden(error):
 
 @app.route('/admin')
 @login_required
-@admin_required
+# @admin_required
 def admin_dashboard():
     usuarios = Usuario.query.all()
     return render_template('admin_dashboard.html', usuarios=usuarios)
@@ -117,10 +79,6 @@ def usuario_dashboard():
 
 @app.route('/form', methods=['GET', 'POST'])
 def form():
-    if request.method == 'POST':
-        name = request.form['name']
-
-        return f"Olá, {name.capitalize()}!"
     return render_template('form.html')
 
 # @app.route('/usuarios')
@@ -153,10 +111,10 @@ def login():
         senha = request.form['senha']
         usuario = Usuario.query.filter_by(email=email).first()
         
-        if usuario and usuario.verificar_senha(senha):
+        if usuario and usuario.senha == senha:
             login_user(usuario)
             flash('Login feito com sucesso!', 'success')
-            return redirect(url_for('usuario_dashboard'))
+            return redirect(url_for('form'))
         else:
             flash('Email ou senha incorretos.', 'danger')
         
@@ -170,9 +128,9 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route('/dashboard')
-@login_required
+# @login_required
 def dashboard():
-    return render_template('user_dashboard.html')
+    return render_template('usuario_dashboard.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -180,14 +138,13 @@ def register():
         nome = request.form['nome']
         email = request.form['email']
         senha = request.form['senha']
-        papel = request.form.get('papel', 'usuario')
 
         if Usuario.query.filter_by(email=email).first():
             flash('Email já registrado', 'danger')
             return redirect(url_for('register'))
 
-        hashed_senha = generate_password_hash(senha, method='pbkdf2:sha256')
-        novo_usuario = Usuario(nome=nome, email=email, senha=hashed_senha, papel=papel)
+        # hashed_senha = generate_password_hash(senha, method='pbkdf2:sha256')
+        novo_usuario = Usuario(nome=nome, email=email, senha=senha)
         db.session.add(novo_usuario)
         db.session.commit()
         flash('Conta criada com sucesso! Faça o login.', 'success')
