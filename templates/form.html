@@ -1,44 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Formulário</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenFit</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS externo -->
 </head>
-<body>
-    <h1>GenFit Form</h1>
-    <form id="exercise-form">
+<body class="has-background-image">
 
-        <label for="objetivo">Objetivo:</label>
-        <select name="objetivo" id="objetivo">
-            <option value="perder peso">Perder peso</option>
-            <option value="ganhar músculo">Ganhar músculo</option>
-            <option value="continuar em forma">Continuar em forma</option>
-        </select>
+  <!-- Cabeçalho -->
+  <header class="navbar is-primary">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item has-text-white" href="#">
+          <h1 class="title has-text-white is-size-1 has-text-centered">GenFit</h1>
+        </a>
+      </div>
+    </div>
+  </header>
 
-        <br>
+  <!-- Formulário -->
+  <section class="section">
+    <div class="container">
+      <div class="box has-background-white-ter">
+        <h1 class="title has-text-centered">GenFit Form</h1>
 
-        <label for="dias">Quantidade de dias para treino:</label>
-        <input type="number" id="dias" name="dias" min="1" max="7">
+        <form>
+          <div class="field">
+            <label class="label">Objetivo:</label>
+            <div class="select is-fullwidth">
+              <select name="objetivo">
+                <option>Perder peso</option>
+                <option>Ganhar músculo</option>
+                <option>Manutenção de peso</option>
+              </select>
+            </div>
+          </div>
 
-        <br>
+          <div class="field">
+            <label class="label">Treinos semanais:</label>
+            <div class="control has-icons-right">
+              <input class="input" type="number" name="dias" min="1" max="20" placeholder="0">
+              <span class="icon is-small is-right">📅</span>
+            </div>
+          </div>
 
-        <label for="peso">Peso (Kg):</label>
-        <input type="number" id="peso" name="peso">
-        
-        <br>
-        
-        <label for="altura">Altura (cm)</label>
-        <input type="number" id="altura" name="altura">
-        
-        <br>
+          <div class="field">
+            <label class="label">Peso atual (Kg):</label>
+            <div class="control has-icons-right">
+              <input class="input" type="number" name="peso" min="1" placeholder="0">
+              <span class="icon is-small is-right">⚖️</span>
+            </div>
+          </div>
 
-        <label for="duracao">Tempo médio para os treinos(minutos):</label>
-        <input type="number" id="duracao" name="duracao" min="20" max="120">
-        
-        <br>
-        <a href="{{ url_for('result') }}" class="btn">Gerar Plano</a>
-    </form>
+          <div class="field">
+            <label class="label">Altura (cm):</label>
+            <input class="input" type="number" name="altura" min="50" max="250">
+          </div>
+
+          <div class="field">
+            <label class="label">Duração do treino (min):</label>
+            <input class="input" type="number" name="duracao" min="20" max="120">
+          </div>
+
+          <button type="submit" class="button is-primary is-fullwidth">Gerar Plano</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
