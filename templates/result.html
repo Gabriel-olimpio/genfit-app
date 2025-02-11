@@ -38,8 +38,16 @@
                 <div class="column is-8 has-text-centered">
                 <div class="box is-small">
                   <h2 class="mt-2 mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">Plano Gerado</h2>
-
-                <h2>📅 Divisão do Treino (Push/Pull/Legs)</h2>
+                    {% if routine %}
+                        <div>
+                            {{ routine }}
+                        </div>
+                    {% elif error %}
+                        <div>
+                            {{ error }}
+                        </div>  
+                    {% endif %}      
+                <!-- <h2>📅 Divisão do Treino (Push/Pull/Legs)</h2>
                 <br>
                 <h3>🔴 Segunda-feira (Push: Peito, Ombros, Tríceps)</h3>
                 <ul class="is-list">
@@ -88,9 +96,9 @@
                     <li>Remada unilateral – 3x10-12</li>
                     <li>Rosca Scott – 3x12</li>
                     <li>Rosca concentrada – 3x12-15</li>
-                </ul>
+                </ul> -->
 
-              </div>
+                </div>
               <div>
                 <a class="button is-medium is-responsive is-primary" href="{{ url_for('dashboard') }}">Dashboard</a>
             </div>

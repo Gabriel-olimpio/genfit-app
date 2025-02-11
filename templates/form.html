@@ -26,14 +26,14 @@
       <div class="box has-background-white-ter">
         <h1 class="title has-text-centered">GenFit Form</h1>
 
-        <form method="POST">
+        <form action="/generate" method="post">
           <div class="field">
             <label class="label">Objetivo:</label>
             <div class="select is-fullwidth">
-              <select name="objetivo">
-                <option>Perder peso</option>
-                <option>Ganhar músculo</option>
-                <option>Manutenção de peso</option>
+              <select id="objetivo" name="objetivo">
+                <option value="perder peso">Perder peso</option>
+                <option value="ganhar musculo">Ganhar músculo</option>
+                <option value="manutencao do peso">Manutenção de peso</option>
               </select>
             </div>
           </div>
@@ -41,7 +41,7 @@
           <div class="field">
             <label class="label">Treinos semanais:</label>
             <div class="control has-icons-right">
-              <input class="input" type="number" name="dias" min="1" max="20" placeholder="0">
+              <input class="input" id="dias" type="number" name="dias" min="1" max="20" placeholder="0">
               <span class="icon is-small is-right">📅</span>
             </div>
           </div>
@@ -49,24 +49,25 @@
           <div class="field">
             <label class="label">Peso atual (Kg):</label>
             <div class="control has-icons-right">
-              <input class="input" type="number" name="peso" min="1" placeholder="0">
+              <input class="input" id="peso" type="number" name="peso" min="1" placeholder="0">
               <span class="icon is-small is-right">⚖️</span>
             </div>
           </div>
 
           <div class="field">
             <label class="label">Altura (cm):</label>
-            <input class="input" type="number" name="altura" min="50" max="250">
+            <input class="input" id="altura" type="number" name="altura" min="50" max="250">
           </div>
 
           <div class="field">
             <label class="label">Duração do treino (min):</label>
-            <input class="input" type="number" name="duracao" min="20" max="120">
+            <input class="input" id="duracao" type="number" name="duracao" min="20" max="120">
           </div>
-
-          <a href="{{ url_for('result') }}" class="button is-primary is-fullwidth">
+          
+          <button class="button is is-primary is-fullwidth" type="submit">Gerar Plano de Treino</button>
+          <!-- <a href="{{ url_for('result') }}" class="button is-primary is-fullwidth">
             Gerar Plano de Treino
-        </a>
+          </a> -->
         </form>
       </div>
     </div>

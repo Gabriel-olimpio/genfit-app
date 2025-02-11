@@ -2,9 +2,10 @@ from functools import wraps
 from flask import Flask, jsonify, render_template, request, flash, redirect, url_for, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
-import bcrypt
+import bcrypt, requests
 from werkzeug.security import generate_password_hash
 
+OLLAMA_API_URL = 'http://localhost:11434/api/generate'
 
 # Config do flask e banco de dados
 app = Flask(__name__)
@@ -24,6 +25,41 @@ login_manager.login_message = 'Você precisa estar logado para acessar esta pág
 @login_manager.user_loader
 def load_user(user_id):
     return Usuario.query.get(int(user_id))
+
+
+@app.route('/generate', methods=['POST'])
+def generate():
+    objetivo = request.form['objetivo']
+    dias = request.form['dias']
+    peso = request.form['peso']
+    altura = request.form['altura']
+    tempo = request.form['duracao']
+
+
+    prompt = f"""
+    rie uma rotina de exercícios para uma pessoa com as seguintes características:
+    - Peso: {peso} kg
+    - Altura: {altura} cm
+    - Objetivo: {objetivo}
+    - Tempo de treino: {tempo} minutos por dia
+    - Dias de treino por semana: {dias}
+
+    A rotina deve ser detalhada e incluir aquecimento, exercícios principais e alongamento.
+    """
+    data = {
+        "model": "llama3.2",
+        "prompt": prompt,
+        "stream": False
+    }
+
+    response = requests.post(OLLAMA_API_URL, json=data)
+
+    if response.status_code == 200:
+        result = response.json()
+        generated_text = result.get('response', '')
+        return render_template('result.html', routine=generated_text)
+    else:
+        return render_template('result.html', error='Erro ao gerar rotina de exercícios.')
 
 
 @app.route('/result')
