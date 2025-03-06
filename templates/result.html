@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Plano de Treino Gerado</title>
+    <style>
+        .is-list {
+            list-style: none;
+        }
+    </style>
+</head>
+
+
+
+<body class="has-background-grey-lighter">
+    <nav class="navbar is-primary">
+
+        <div class="navbar-start">
+            <a class="navbar-item" href="{{ url_for('home') }}">
+                <strong>GenFit</strong>
+            </a>
+        </div>
+        <div class="navbar-end px-2">
+            <div class="buttons">
+                <a class="button is-light" href="{{ url_for('logout') }}">
+                    Log out
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline is-centered">
+                <div class="column is-8 has-text-centered">
+                <div class="box is-small">
+                  <h2 class="mt-2 mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">Plano Gerado</h2>
+                    {% if routine %}
+                        <div>
+                            {{ routine | safe }}
+                        </div>
+                    {% elif error %}
+                        <div>
+                            {{ error }}
+                        </div>  
+                    {% endif %}     
+                </div>
+              <div>
+                <a class="button is-medium is-responsive is-primary" href="{{ url_for('dashboard') }}">Dashboard</a>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
