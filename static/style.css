@@ -1,198 +1,43 @@
 /* Reset básico */
-* {
+html, body{
+  height: 100%;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* Importa o Bulma (apenas uma vez) */
-@import url('https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css');
+/* Loading */
 
-/* Estilos Globais */
-
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  padding: 20px;
-}
-/* Cabeçalho e Navbar */
-/
-
-header, .navbar {
+.loading-screen {
+  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background: #007BFF;
-  color: #fff;
-  padding: 10px 20px;
+  z-index: 1000;
 }
 
-.navbar-item h1 {
-  margin: auto;
-  font-weight: bold;
-}
 
-header .brand h1, h1.title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-nav ul li {
-  display: inline;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Seção Principal */
-
-
-main {
-  margin: 20px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
+.loading-content {
   text-align: center;
 }
 
-main h2 {
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: #007BFF;
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3273dc; /* Cor primária do Bulma */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
 }
 
-main.section {
-  padding: 4rem 1rem;
+.loading-text {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #363636; /* Cor de texto padrão do Bulma */
 }
 
-main p {
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-.button.is-primary, .btn {
-  display: inline-block;
-  width: 100%;
-  padding: 10px 20px;
-  background: #3273dc;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background 0.3s ease;
-  cursor: pointer;
-  border: none;
-}
-
-.button.is-primary:hover, .btn:hover {
-  background-color: #275caa;
-}
-
-
-/* Login & Registro */
-
-
-.auth-container {
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.has-text-centered a {
-  color: #007BFF !important;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.has-text-centered a:hover {
-  text-decoration: underline;
-}
-
-
-/* Forms */
-
-
-.form-box {
-  max-width: 600px;
-  margin: auto;
-  padding: 30px;
-}
-
-.form-box .box {
-  max-width: 500px;
-  margin: auto;
-  padding: 20px;
-}
-
-.has-icons-right {
-  position: relative;
-}
-
-.has-icons-right .icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
-}
-
-
-.tabs ul {
-  display: flex;
-  justify-content: space-between;
-}
-
-.tabs li a {
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #3273dc;
-  transition: color 0.3s ease;
-}
-
-.tabs li.is-active a {
-  color: #fff;
-  background-color: #3273dc;
-  border-radius: 5px;
-}
-
-/*  Rodapé */
-
-footer, .footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #666;
-  padding: 2rem 1rem;
-  background-color: #f5f5f5;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

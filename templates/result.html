@@ -40,64 +40,13 @@
                   <h2 class="mt-2 mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">Plano Gerado</h2>
                     {% if routine %}
                         <div>
-                            {{ routine }}
+                            {{ routine | safe }}
                         </div>
                     {% elif error %}
                         <div>
                             {{ error }}
                         </div>  
-                    {% endif %}      
-                <!-- <h2>📅 Divisão do Treino (Push/Pull/Legs)</h2>
-                <br>
-                <h3>🔴 Segunda-feira (Push: Peito, Ombros, Tríceps)</h3>
-                <ul class="is-list">
-                    <li>Supino reto com barra – 4x8-12</li>
-                    <li>Supino inclinado com halteres – 3x10-12</li>
-                    <li>Desenvolvimento com halteres – 4x10-12</li>
-                    <li>Elevação lateral – 3x12-15</li>
-                    <li>Tríceps francês – 3x10-12</li>
-                    <li>Tríceps corda no pulley – 3x12-15</li>
-                </ul>
-                <br>
-                <h3>🔵 Terça-feira (Pull: Costas e Bíceps)</h3>
-                <ul class="is-list">
-                    <li>Barra fixa – 4x6-10</li>
-                    <li>Remada curvada – 4x8-12</li>
-                    <li>Puxador costas – 3x10-12</li>
-                    <li>Rosca direta – 4x10-12</li>
-                    <li>Rosca martelo – 3x12-15</li>
-                </ul>
-                <br>
-                <h3>🟢 Quarta-feira (Pernas)</h3>
-                <ul class="is-list">
-                    <li>Agachamento livre – 4x8-12</li>
-                    <li>Leg press 45° – 4x10-12</li>
-                    <li>Cadeira extensora – 3x12-15</li>
-                    <li>Cadeira flexora – 3x12-15</li>
-                    <li>Panturrilha no leg press – 4x15-20</li>
-                    <li>Prancha abdominal – 3x30-60s</li>
-                    <li>Elevação de pernas – 3x15</li>
-                </ul>
-                <br>
-                <h3>🔴 Quinta-feira (Push: Peito, Ombros, Tríceps)</h3>
-                <ul class="is-list">
-                    <li>Crucifixo inclinado – 4x10-12</li>
-                    <li>Supino declinado – 3x10-12</li>
-                    <li>Desenvolvimento Arnold – 3x10-12</li>
-                    <li>Encolhimento com halteres – 3x12-15</li>
-                    <li>Paralelas – 3x8-12</li>
-                    <li>Tríceps testa – 3x10-12</li>
-                </ul>
-                <br>
-                <h3>🔵 Sexta-feira (Pull: Costas e Bíceps)</h3>
-                <ul class="is-list">
-                    <li>Levantamento terra – 4x6-10</li>
-                    <li>Puxador fechado supinado – 4x10-12</li>
-                    <li>Remada unilateral – 3x10-12</li>
-                    <li>Rosca Scott – 3x12</li>
-                    <li>Rosca concentrada – 3x12-15</li>
-                </ul> -->
-
+                    {% endif %}     
                 </div>
               <div>
                 <a class="button is-medium is-responsive is-primary" href="{{ url_for('dashboard') }}">Dashboard</a>
