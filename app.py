@@ -1,5 +1,4 @@
-from functools import wraps
-from flask import Flask, jsonify, render_template, request, flash, redirect, url_for, abort
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import requests, markdown

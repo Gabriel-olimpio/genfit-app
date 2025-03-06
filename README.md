@@ -4,7 +4,7 @@ GenFit é uma aplicação web que gera automaticamente rotinas de exercícios f�
 
 ---
 
-## 🛠️ Instruções de Instalação
+## 🛠️ Instruções de Instalação e Uso
 
 Siga os passos abaixo para configurar e executar o GenFit localmente:
 
@@ -19,8 +19,9 @@ Siga os passos abaixo para configurar e executar o GenFit localmente:
 Após fazer o fork, clone o repositório para a sua máquina:
 
 ``` bash
-git clone https://github.com/<SEU_USUARIO>/GenFit.git
+git clone https://github.com/<SEU_USUARIO>/genfit-app
 ```
+
 ### 3. Navegue até o diretorio do projeto
 
 ```bash
@@ -38,18 +39,36 @@ Ative o ambiente:
   venv/Scripts/activate
   ```
 ### 5. Instale as dependências
-
+ Todas as dependências necessárias serão instaladas seguindo este comando
 ```bash
 pip install -r requirements.txt
 ```
 
-### 6. Execução da aplicação
+### 6. Instale o Ollama
+Link para baixar o Ollama: https://ollama.com/
+
+
+#### 6.1. Rode o Llama 3.2
 
 ```bash
-python app.py
+  ollama run llama3.2
+```
+Isso irá instalar o Llama 3.2 fazendo-o ficar disponível localmente e possibilitando o funcionamento da aplicação (GenFit).
+
+
+### 7. Execução da aplicação
+
+```bash
+python app.py 
+
+ou
+
+python3 app.py
 ```
 
-E acesse a aplicação em: http://127.0.0.1:5000.
+Acesse a aplicação em: http://127.0.0.1:5000.
+
+
   
 
 
